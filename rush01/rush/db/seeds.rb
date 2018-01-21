@@ -7,9 +7,9 @@
 # rake db:migrate
 # rake db:seed
 
-# user = User.register("gygydu19@gmail.com", "gygy", "test1234", "test1234")
-# user.save
-#
-# user = User.register("admin@gmail.com", "admin", "123456789", "123456789")
-# user.save
-# user.update(:group => "admin")
+user = User.register("gygydu19@gmail.com", "gygy", "test1234", "test1234")
+user.save
+
+user = User.register("admin@gmail.com", "admin", "123456789", "123456789")
+user.save
+user.update(:grp => 0)

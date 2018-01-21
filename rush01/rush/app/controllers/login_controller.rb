@@ -10,7 +10,7 @@ class LoginController < ApplicationController
 			# subsequent requests
 			session[:id] = user.id
 			session[:pseudo] = user.pseudo
-			session[:admin] = user.group == "admin"
+			session[:admin] = user.grp == 0
 			redirect_to "/home"
 			return
 		else

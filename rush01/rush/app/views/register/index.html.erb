@@ -36,6 +36,7 @@
 				<%= @error[:password_confirmation][0] %>
 			</div>
 		<% end %>
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		<button type="submit" class="btn btn-primary">Register</button>
 	</form>
 </div>

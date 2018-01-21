@@ -2,19 +2,15 @@
 # require 'digest/sha1'
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
 	validates :email, :pseudo, presence: true
 	validates :email, :pseudo, uniqueness: true
 	validates :pseudo, length: { minimum: 2 }
 	validates :email, format: Devise.email_regexp
 
-	# validates :password, confirmation: true
-	# validates :password, length: { minimum: 8 }
-	# validates :password_confirmation, length: { minimum: 8 }
+	validates :password, confirmation: true
+	validates :password, length: { minimum: 8 }
+	validates :password_confirmation, length: { minimum: 8 }
 
 	enum grp: {
 		admin: 0,
@@ -25,9 +21,9 @@ class User < ApplicationRecord
 		User.find_by(email: email, password: User.encrypt_pass(password))
 	end
 
-	# def self.register(email, pseudo, password, password_confirmation)
-	# 	User.new(email: email, pseudo: pseudo, password: User.encrypt_pass(password), password_confirmation: User.encrypt_pass(password_confirmation))
-	# end
+	def self.register(email, pseudo, password, password_confirmation)
+		User.new(email: email, pseudo: pseudo, password: User.encrypt_pass(password), password_confirmation: User.encrypt_pass(password_confirmation))
+	end
 
 	def change_password(last_password, new_password, new_password_confirmation)
 		res = true

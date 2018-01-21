@@ -16,6 +16,6 @@ class SettingController < ApplicationController
 	private
 
 	def get_user
-		@user = current_user
+		@user = User.find_by(:id => session[:id])
 	end
 end
